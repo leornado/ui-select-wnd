@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.11.2 - 2015-03-17T04:08:46.474Z
+ * Version: 0.11.2 - 2015-05-26T05:51:23.977Z
  * License: MIT
  */
 
@@ -540,7 +540,9 @@ uis.controller('uiSelectCtrl',
   ctrl.clear = function($event) {
     ctrl.select(undefined);
     $event.stopPropagation();
-    ctrl.focusser[0].focus();
+    $timeout(function() {
+      ctrl.focusser[0].focus();
+    }, 0, false);
   };
 
   // Toggle dropdown
@@ -631,6 +633,10 @@ uis.controller('uiSelectCtrl',
   ctrl.searchInput.on('keydown', function(e) {
 
     var key = e.which;
+    if(key == KEY.ENTER) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
     // if(~[KEY.ESC,KEY.TAB].indexOf(key)){
     //   //TODO: SEGURO?

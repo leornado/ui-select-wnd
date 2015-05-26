@@ -38,6 +38,16 @@ gulp.task('clean', function(cb) {
   del(['dist'], cb);
 });
 
+var webserver = require('gulp-webserver');
+gulp.task('webserver', function() {
+  gulp.src('.')
+      .pipe(webserver({
+        livereload: true,
+        directoryListing: true,
+        open: true
+      }));
+});
+
 gulp.task('scripts', ['clean'], function() {
 
   var buildTemplates = function () {

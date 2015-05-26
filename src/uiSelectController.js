@@ -397,6 +397,10 @@ uis.controller('uiSelectCtrl',
   ctrl.searchInput.on('keydown', function(e) {
 
     var key = e.which;
+    if(key == KEY.ENTER) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
     // if(~[KEY.ESC,KEY.TAB].indexOf(key)){
     //   //TODO: SEGURO?
